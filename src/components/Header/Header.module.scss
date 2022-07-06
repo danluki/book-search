@@ -1,0 +1,33 @@
+*{
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.wrapper{
+  overflow: hidden;
+  background-image: url(../../assets/header_background.jpg);
+  background-repeat:no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 30vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &__input{
+    border-radius: 4px;
+  }
+
+  h1{
+    margin: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Finlandica', sans-serif;
+  }
+}

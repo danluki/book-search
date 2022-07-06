@@ -1,0 +1,38 @@
+.paginate_wrapper{
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+
+  width: 100vw;
+  flex-direction: row;
+  padding: 40px;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  &__page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+
+    &_selected {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px;
+      border: 1px solid gray;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      background: gray;
+    }
+  }
+
+}
