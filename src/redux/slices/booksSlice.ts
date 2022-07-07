@@ -28,14 +28,31 @@ type SearchParams = {
 export const fetchBooksByParams = createAsyncThunk<Book[], SearchParams>('books/fetchBooksByParams', async (params) => {
   const {query, startIndex, maxResults, orderBy, category} = params;
 
-  const {data} = await axios.
-    get(`books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&key=AIzaSyC9PnkUgkVtxsC8pAZmW01LL8tMhkOuF74`);
+  if (query.length === 0) return;
   
-    return data.items as Book[];
+  try{
+  const {data} = await axios.
+    get(`books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&printType=${category}&key=AIzaSyC9PnkUgkVtxsC8pAZmW01LL8tMhkOuF74`);
+    return data.items;
+  }
+  catch(e){
+    console.log(e);
+    return [];
+  }
+  
 
 })
 
-enum Status{
+export const getBooksCount = createAsyncThunk<number, SearchParams>('books/fetchBooksByParams', async (params) => {
+  const {query, startIndex, maxResults, orderBy, category} = params;
+
+  const {data} = await axios.
+    get(`books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&printType=${category}&key=AIzaSyC9PnkUgkVtxsC8pAZmW01LL8tMhkOuF74`);
+    return data.totalItems;
+  
+
+})
+export enum Status{
   LOADING = 'pending',
   SUCCESS = 'success',
   ERROR = 'error',
@@ -50,16 +67,18 @@ interface BooksSliceState {
   sortBy: string;
   selectedPage: number;
   pageStep: number;
+  totalItems: number;
 }
 
 const initialState: BooksSliceState = {
   books: [],
   isBooksLoading: Status.LOADING,
-  query: '',
+  query: 'js',
   category: 'all',
   sortBy: 'relevance',
   selectedPage: 1,
   pageStep: 40,
+  totalItems: 0,
 }
 
 export const booksSlice = createSlice({
@@ -74,6 +93,9 @@ export const booksSlice = createSlice({
     },
     setQuery(state, action: PayloadAction<string>){
       state.query = action.payload;
+    },
+    setSelectedPage(state, action: PayloadAction<number>){
+      state.selectedPage = action.payload;
     }
   },
 
@@ -90,9 +112,9 @@ export const booksSlice = createSlice({
       state.isBooksLoading = Status.ERROR;
       state.books = [];
     });
-  }
+  },
 })
 
-export const {setCategory, setSortBy, setQuery} = booksSlice.actions;
+export const {setCategory, setSortBy, setQuery, setSelectedPage} = booksSlice.actions;
 
 export default booksSlice.reducer;
