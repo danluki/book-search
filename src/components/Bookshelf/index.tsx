@@ -44,21 +44,17 @@ const Bookshelf: React.FC = () => {
   const skeletons = [...new Array(20)].map((_, index) => (
     <Skeleton key={index} />
   ));
-  
+
   if (!books) return <></>;
 
   return (
     <>
-      <div className={styles.bookshelf__wrapper}>
-        {
-          isBooksLoading === Status.ERROR && (
-            <h2>Ошибка при загрзуке книг!</h2>
-          )
-        }
+      <div className={styles.bookshelf__grid}>
+        {isBooksLoading === Status.ERROR && <h2>Ошибка при загрзуке книг!</h2>}
 
         {isBooksLoading === Status.LOADING
           ? skeletons
-          : books.map((book) => <Item book={book} key={book.id}/>)}
+          : books.map((book) => <Item book={book} key={book.id} />)}
       </div>
       {books.length > 0 && (
         <Paginate

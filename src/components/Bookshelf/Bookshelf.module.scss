@@ -24,5 +24,23 @@
 
   }
 
+  &__grid {
+    padding: 50px;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 15px 10px; 
 
+    @media screen and (max-width: 720px) {
+      grid-template-columns: 1fr 1fr 1fr; 
+    }
+
+    @media screen and (max-width: 560px) {
+      grid-template-columns: 1fr 1fr; 
+    }
+
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr; 
+    }
+  }
 }

@@ -28,7 +28,7 @@ type SearchParams = {
 export const fetchBooksByParams = createAsyncThunk<Book[], SearchParams>('books/fetchBooksByParams', async (params) => {
   const {query, startIndex, maxResults, orderBy, category} = params;
 
-  if (query.length === 0) return;
+  if (query.length === 0) return [];
   
   const {data} = await axios.
     get(`books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&printType=${category}&key=AIzaSyC9PnkUgkVtxsC8pAZmW01LL8tMhkOuF74`);

@@ -8,7 +8,7 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ book }) => {
-  return (    
+  return (
     <Link to={`/book/${book.id}`}>
       <div className={styles.bookshelf__item} key={book.id}>
         <img src={book.volumeInfo?.imageLinks?.smallThumbnail} alt="error" />

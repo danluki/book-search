@@ -8,7 +8,7 @@
 }
 
 .wrapper{
-  overflow: none;
+  flex-shrink: 0;
   background-image: url(../../assets/header_background.jpg);
   background-repeat:no-repeat;
   background-size: cover;

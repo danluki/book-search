@@ -9,25 +9,20 @@
 }
 
 .bookshelf{
-
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 4px;
   &__item {
+    float: bottom;
+    font-family: 'Finlandica', sans-serif;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    margin: 10px 10px;
-    height: 320px;
-    width: 150px;
+    height: 410px;
     background-color: rgb(246, 245, 245);
 
-    @media screen and (max-width: 400px){
-     margin: 4px 4px;
-    }
 
     img {
-      margin: 10px;
+      margin: 10px auto;
       width: 130px;
       height: 150px;
     }

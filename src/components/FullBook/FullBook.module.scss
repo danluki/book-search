@@ -3,6 +3,12 @@
   height: 70vh;
   width: 100vw;
 
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    overflow: auto;
+    height: auto;
+  }
+
   &__left_container {
     height: 70vh;
     width: 50vw;
@@ -12,7 +18,20 @@
     border-right: 1px solid rgb(233, 231, 231);
     img{
       width: 50%;
+
       box-shadow: 10px 10px 20px 1px;
+    }
+
+    @media screen and (max-width: 500px) {
+      align-items: flex-start;
+      width: 100vw;
+      height: 30vh;
+      margin-top: 25px;
+      margin-bottom: 5px;
+      border-right: none;
+      img{
+        height: 100%;
+      }
     }
   }
 
@@ -26,6 +45,12 @@
     justify-content: flex-start;
     flex-direction: column;
     overflow: auto;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+      overflow: none;
+      height: auto;
+    }
 
     h5 {
       margin: 30px;
@@ -46,5 +71,9 @@
     border: 1px solid #d3d3d1;
     height: auto;
     width: 80%;
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
   }
 }
