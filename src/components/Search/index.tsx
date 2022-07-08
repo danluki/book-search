@@ -3,18 +3,24 @@ import styles from "./Search.module.scss";
 import { setQuery } from "../../redux/slices/booksSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import debounce from "lodash.debounce";
+import { useNavigate } from "react-router-dom";
 
 const Search: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { query } = useAppSelector((state) => state.books);
+  const { query, category, sortBy } = useAppSelector((state) => state.books);
   const [value, setValue] = React.useState("");
 
+  const navigate = useNavigate();
   const updateSearchValue = React.useCallback(
     debounce((value: string) => {
       dispatch(setQuery(value));
     }, 1000),
     []
   );
+
+  React.useEffect(() => {
+    navigate("/");
+  }, [query, category, sortBy]);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

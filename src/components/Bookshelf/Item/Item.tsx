@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import booksSlice, { Book } from "../../../redux/slices/booksSlice";
 import styles from "./Item.module.scss";
 
@@ -7,29 +8,31 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ book }) => {
-  return (
-    <div className={styles.bookshelf__item} key={book.id}>
-      <img src={book.volumeInfo?.imageLinks?.smallThumbnail} alt="error" />
-      {book.volumeInfo?.categories?.map((category) => (
-        <p
-          style={{ color: "gray", marginLeft: "10px", marginBottom: "10px" }}
-          key={book.id}
-        >
-          <u>{category}</u>
+  return (    
+    <Link to={`/book/${book.id}`}>
+      <div className={styles.bookshelf__item} key={book.id}>
+        <img src={book.volumeInfo?.imageLinks?.smallThumbnail} alt="error" />
+        {book.volumeInfo?.categories?.map((category) => (
+          <p
+            style={{ color: "gray", marginLeft: "10px", marginBottom: "10px" }}
+            key={book.id}
+          >
+            <u>{category}</u>
+          </p>
+        ))}
+        <p style={{ marginLeft: "10px", marginBottom: "10px" }}>
+          <b>{book.volumeInfo.title}</b>
         </p>
-      ))}
-      <p style={{ marginLeft: "10px", marginBottom: "10px" }}>
-        <b>{book.volumeInfo.title}</b>
-      </p>
-      {book.volumeInfo?.authors?.map((author) => (
-        <p
-          style={{ marginLeft: "10px", float: "inline-end" }}
-          key={Math.random()}
-        >
-          {author}
-        </p>
-      ))}
-    </div>
+        {book.volumeInfo?.authors?.map((author) => (
+          <p
+            style={{ marginLeft: "10px", float: "inline-end" }}
+            key={Math.random()}
+          >
+            {author}
+          </p>
+        ))}
+      </div>
+    </Link>
   );
 };
 

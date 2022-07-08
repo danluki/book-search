@@ -25,6 +25,7 @@ const Bookshelf: React.FC = () => {
   } = useAppSelector((state) => state.books);
   let totalLength = 0;
   const isMounted = React.useRef(false);
+
   const selectPage = (page: number) => {
     dispatch(setSelectedPage(page));
   };
@@ -54,9 +55,10 @@ const Bookshelf: React.FC = () => {
             <h2>Ошибка при загрзуке книг!</h2>
           )
         }
+
         {isBooksLoading === Status.LOADING
           ? skeletons
-          : books.map((book) => <Item book={book} key={book.id} />)}
+          : books.map((book) => <Item book={book} key={book.id}/>)}
       </div>
       {books.length > 0 && (
         <Paginate

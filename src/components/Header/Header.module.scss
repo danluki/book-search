@@ -8,13 +8,13 @@
 }
 
 .wrapper{
-  overflow: hidden;
+  overflow: none;
   background-image: url(../../assets/header_background.jpg);
   background-repeat:no-repeat;
   background-size: cover;
   width: 100vw;
   height: 30vh;
-
+  box-shadow: 1px 1px 20px 1px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
